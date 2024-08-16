@@ -1,6 +1,7 @@
 ROOT_DIR := $(shell git rev-parse --show-toplevel)
 VENV := $(ROOT_DIR)/.venv
 PYTHON := $(VENV)/bin/python3
+TWINE := $(VENV)/bin/twine
 PIP := $(VENV)/bin/pip
 VIRTUAL_ENV := python3 -m venv
 REQUIREMENTS := requirements.txt
@@ -36,8 +37,8 @@ venv: $(VENV)/bin/activate
 publish: test
 	@echo "Publish the python project to test pypi."
 	$(PYTHON) -m build
-	twine check dist/*
-	twine upload -r testpypi dist/*
+	$(TWINE) check dist/*
+	$(TWINE) upload -r testpypi dist/*
 
 ##@ run: Run the program
 
