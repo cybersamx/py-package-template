@@ -31,6 +31,14 @@ $(VENV)/bin/activate: requirements.txt requirements-tools.txt
 # Phony target for running the virtual environment setup
 venv: $(VENV)/bin/activate
 
+##@ publish: Publish the program to test PyPI
+
+publish: test
+	@echo "Publish the python project to test pypi."
+	$(PYTHON) -m build
+	twine check dist/*
+	twine upload -r testpypi dist/*
+
 ##@ run: Run the program
 
 run: venv lint
@@ -54,6 +62,8 @@ test: venv
 clean:
 	@echo "Removing build cache."
 	rm -rf __pycache__
+	rm -rf dist
+	rm -rf *.egg-info
 	find . -type f -name '*.pyc' -delete
 
 ##@ help: Help
