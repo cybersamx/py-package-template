@@ -1,18 +1,18 @@
 # Python Template
 
-A python template that we can use to create other Python template. It provides the pertinent setup and boilerplate code needed in a new python project.
+A python template that we can use to create a new project for the development and publication of a python package named `cybersamx_test` to Test PyPi.
 
 ## Setup
 
 ### Set up the Project
 
-1. Set up tools, packages, and virtual environment 
+1. Set up tools, packages, and virtual environment. It installs the tools/packages for the dev environment and the packages for running the package.
 
    ```shell
    make install
    ```
 
-1. The Makefile doesn't activate the environment, just install the it. So activate the virtualenv if you want.
+1. The Makefile doesn't activate the virtual environment (virtualenv), just set up the virtualenv. So activate the virtualenv after running `make`.
 
    ```shell
    source .venv/bin/activate 
@@ -30,19 +30,25 @@ If you open this project in PyCharm, perform the following setup on the IDE to o
 
 ### Running Tests
    
-1. A better way to run tests is to call pytest directly from the command line by running `python -m pytest tests`. But pytest returns `ModuleNotFoundError: No module named 'finance'` because pytest don't know where to load the module. To correct this, add the following line to `pyproject.toml`.
-
-   ```toml
-   [tool.pytest.ini_options]
-   pythonpath = [
-     'src'
-   ]
-   ```
-
-   Now running the following command will run the tests correctly.
+1. Run the command to test
 
    ```shell
    $ make test
    $ # Alternatively, run pytest directly.
    $ python -m pytest tests
    ```
+
+### Publish to Test PyPi
+
+1. Change the project name in `pyproject.toml`, otherwise we will get a name collision as the name has already been taken.
+1. Make sure that the version in `pyproject.toml` is correct.
+1. Run the command to build and publish the package.
+
+   ```shell
+   make publish
+   ```
+   
+> **Notes**
+> 
+> The project is set up for Test PyPi. Make the appropriate changes to publish the package to PyPi.
+

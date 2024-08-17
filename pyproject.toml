@@ -1,10 +1,10 @@
 [project]
-name = 'python-template'
-description = 'This is a python template that we use to create a new python template. Change the description here.'
+name = 'cybersamx_test'
+description = 'This is a python package template.'
 readme = 'README.md'
 version = '0.1.0'
 requires-python = '>=3.11'
-dependencies = ['numpy']  # Doesn't need 3rd-party numpy. Just a placeholder as an example.
+dependencies = ['numpy']
 
 [build-system]
 requires = ['setuptools']
@@ -12,8 +12,10 @@ build-backend = 'setuptools.build_meta'
 
 # Exclude tests from the distribution
 [tool.setuptools.packages.find]
+where = ['src']
+include = ['*']
 exclude = ['tests']
 
 # Include this configruation so that we can import the module we want to test.
 [tool.pytest.ini_options]
-pythonpath = ['src', ]
+pythonpath = ['src']
